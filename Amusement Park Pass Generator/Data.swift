@@ -25,6 +25,7 @@ var city: String?
 var state: String?
 var zipCode: Int?
 var vender: String?
+var age: Int = 0
 
 enum entrants: String {
     case reject = "Not Allowed"
@@ -65,7 +66,7 @@ var access: [String : String] =
     "dobMonth" : "", // Entrant DOB Month: 01
     "dobDay" : "", // Entrant DOB Day: 01
     "dobYear" : "", // Entrant DOB Year: 2017
-    "age" : "", // How is the Entrant? 1?
+    "age" : "",
     "firstName" : "", // Entrant First Name: Johnny
     "lastName" : "", // Entrant Last Name: Appleseed
     "address" : "", // Entrant Address: 1 Infinite Loop
@@ -84,13 +85,14 @@ func checkBirthday(_ type: entrants) {
     // Calc Age for use later in the function
     print("Checking Birthday")
     let ageDOB = Calendar.current.date(from: DateComponents(year: Int(access["dobYear"]!), month: Int(access["dobMonth"]!), day: Int(access["dobDay"]!)))!
-    let age = ageDOB.age
+    age = ageDOB.age
     access["age"] = "\(age)"
     
     if (access["dobMonth"] != "") && (access["dobDay"] != "") {
         // Check if today is the Entrant's Birthday
         if "\(access["dobMonth"]!).\(access["dobDay"]!)" ==  currentMMDD {
             access["Birthday"] = "TRUE"
+            print("Happy Birthday!")
         } else {
             access["Birthday"] = "FALSE"
         }
@@ -99,8 +101,7 @@ func checkBirthday(_ type: entrants) {
     }
     
     // Check if Entrant is old enough to enter
-    if access["age"]! >= "5" {
-        print("Welcome!")
+    if age >= 5 {
         access["enter"] = "TRUE"
     } else {
         // reject Entrant. Entrant is not old enough to enter!
