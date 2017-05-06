@@ -12,6 +12,8 @@
 		100AA3311EB9681300983630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100AA32F1EB9681300983630 /* Main.storyboard */; };
 		100AA3331EB9681300983630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 100AA3321EB9681300983630 /* Assets.xcassets */; };
 		100AA3361EB9681300983630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 100AA3341EB9681300983630 /* LaunchScreen.storyboard */; };
+		100AA33E1EB968C000983630 /* Entrants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100AA33D1EB968C000983630 /* Entrants.swift */; };
+		107E53671EBBD18500745CF2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107E53661EBBD18500745CF2 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		100AA3321EB9681300983630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		100AA3351EB9681300983630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		100AA3371EB9681300983630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		100AA33D1EB968C000983630 /* Entrants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entrants.swift; sourceTree = "<group>"; };
+		107E53661EBBD18500745CF2 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				100AA3321EB9681300983630 /* Assets.xcassets */,
 				100AA3341EB9681300983630 /* LaunchScreen.storyboard */,
 				100AA3371EB9681300983630 /* Info.plist */,
+				100AA33D1EB968C000983630 /* Entrants.swift */,
+				107E53661EBBD18500745CF2 /* Data.swift */,
 			);
 			path = "Amusement Park Pass Generator";
 			sourceTree = "<group>";
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				100AA32E1EB9681300983630 /* ViewController.swift in Sources */,
+				100AA33E1EB968C000983630 /* Entrants.swift in Sources */,
 				100AA32C1EB9681300983630 /* AppDelegate.swift in Sources */,
+				107E53671EBBD18500745CF2 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +312,7 @@
 				100AA33C1EB9681300983630 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
