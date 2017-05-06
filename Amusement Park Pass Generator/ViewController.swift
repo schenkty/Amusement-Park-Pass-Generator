@@ -9,14 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // MARK: Child Guest TEST
         // When testing please adjust the month, day, and year values
-        month = "05"
+        
+        /*month = "05"
         day = "05"
         year = "2005"
         print("Starting PassBuilder")
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
         checkPermission(.kitchenAreas)
         checkPermission(.maintenanceAreas)
         checkPermission(.rideControlAreas)
-        checkPermission(.skipRideLines)
+        checkPermission(.skipRideLines)*/
         
         // MARK: Classic Guest TEST
         // As a second thought. Why am I not checking for anything here? Maybe a Birthday so a kid can not sneak in!
@@ -171,6 +172,28 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: TEST BUTTON
+    // Please dont yell at me. I know i should not have UI Items yet but oh man was it hard to prove my logic worked without one so what could it hurt?
+    @IBAction func TestEntry(_ sender: UIButton) {
+        print("Starting PassBuilder")
+        //month = "03"
+        //day = "07"
+        //year = "2017"
+        //firstName = "Johnny"
+        //lastName = "Appleseed"
+        //address = "1 Infinite Loop"
+        //city = "Cupertino"
+        //state = "CA"
+        //zipCode = 95014
+        // I set the type to the child entrant simply to explain my logic. Please un-comment vars to test other type's
+        PassBuilder.init(type: .childGuest).run()
+        checkPermission(.amusementAreas)
+        checkPermission(.kitchenAreas)
+        checkPermission(.maintenanceAreas)
+        checkPermission(.rideControlAreas)
+        checkPermission(.skipRideLines)
     }
 }
 

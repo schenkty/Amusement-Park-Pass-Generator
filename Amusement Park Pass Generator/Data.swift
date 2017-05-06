@@ -26,6 +26,8 @@ var state: String?
 var zipCode: Int?
 var vender: String?
 var age: Int = 0
+var entry: Bool = true
+var runGate: Int = 0
 
 enum entrants: String {
     case reject = "Not Allowed"
@@ -143,5 +145,16 @@ func checkPermission(_ area: entrantPerms) {
         } else {
             print("Entrant is not allowed in: \(area.rawValue)")
         }
+    }
+}
+
+func setEntry() {
+    if runGate == 0 {
+        runGate = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
+            print("Entry Allowed")
+            entry = true
+            runGate = 0
+        })
     }
 }

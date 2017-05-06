@@ -13,6 +13,22 @@ class PassBuilder {
         enteredType = type
     }
     func run() {
+        if entry == false {
+            enteredType = .reject
+            access["firstName"] = ""
+            access["lastName"] = ""
+            access["address"] = ""
+            access["city"] = ""
+            access["state"] = ""
+            access["zipCode"] = ""
+            access["enter"] = "FALSE"
+            access["Amusement Areas"] = "FALSE"
+            access["Kitchen Areas"] = "FALSE"
+            access["Maintenance Areas"] = "FALSe"
+            access["Office Areas"] = "FALSe"
+            access["discountFood"] = "0"
+            access["discountMerch"] = "0"
+        }
         switch enteredType {
         // MARK: Child Guest
         case .childGuest:
@@ -28,6 +44,8 @@ class PassBuilder {
                 print("No DOB Year to submit")
                 return
             }
+            
+            // Check if you are allowed to enter and assign permission
             access["dobMonth"] = dobMonth
             access["dobDay"] = dobDay
             access["dobYear"] = dobYear
@@ -35,19 +53,27 @@ class PassBuilder {
             // Check to make sure the Guest is old enough
             checkBirthday(enteredType)
             
-            // Check if you are allowed to enter and assign permission
             if (access["enter"] == "TRUE") {
                 access["Amusement Areas"] = "TRUE"
             }
+            print("Entry Blocked")
+            entry = false
+            setEntry()
         case .classicGuest: // MARK: Classic Guest
             access["enter"] = "TRUE"
             access["Amusement Areas"] = "TRUE"
+            print("Entry Blocked")
+            entry = false
+            setEntry()
         case .vipGuest: // MARK: VIP Guest
             access["enter"] = "TRUE"
             access["Amusement Areas"] = "TRUE"
             access["Skip Ride Lines"] = "TRUE"
             access["discountFood"] = "10"
             access["discountMerch"] = "20"
+            print("Entry Blocked")
+            entry = false
+            setEntry()
         case .employeeFoodServices: // MARK: Food Employee
             guard let fname = firstName else {
                 print("No First Name to submit")
@@ -84,6 +110,9 @@ class PassBuilder {
             access["Kitchen Areas"] = "TRUE"
             access["discountFood"] = "15"
             access["discountMerch"] = "25"
+            print("Entry Blocked")
+            entry = false
+            setEntry()
         case .employeeRideServices: // MARK: Ride Employee
             guard let fname = firstName else {
                 print("No First Name to submit")
@@ -120,6 +149,9 @@ class PassBuilder {
             access["Amusement Areas"] = "TRUE"
             access["discountFood"] = "15"
             access["discountMerch"] = "25"
+            print("Entry Blocked")
+            entry = false
+            setEntry()
         case .employeeMaintenances: // MARK: Maintenance Employee
             guard let fname = firstName else {
                 print("No First Name to submit")
@@ -145,6 +177,7 @@ class PassBuilder {
                 print("No Zip Code to submit")
                 return
             }
+            
             access["firstName"] = fname
             access["lastName"] = lname
             access["address"] = eaddress
@@ -157,6 +190,9 @@ class PassBuilder {
             access["Maintenance Areas"] = "TRUE"
             access["discountFood"] = "15"
             access["discountMerch"] = "25"
+            print("Entry Blocked")
+            entry = false
+            setEntry()
         case .employeeManagers: // MARK: Manager Employee
             guard let fname = firstName else {
                 print("No First Name to submit")
@@ -195,9 +231,13 @@ class PassBuilder {
             access["Office Areas"] = "TRUE"
             access["discountFood"] = "25"
             access["discountMerch"] = "25"
+            print("Entry Blocked")
+            entry = false
+            setEntry()
         case .reject: // MARK: Reject Guest
             access["enter"] = "FALSE"
+            entry = false
+            setEntry()
         }
     }
 }
-
