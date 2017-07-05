@@ -13,16 +13,15 @@ enum passThrows: Error {
     case BlockedEntry
     case DoubleEntry
     case MissingAllData
-    case MissingDOB
-    case MissingDOBMonth
-    case MissingDOBDay
-    case MissingDOBYear
     case MissingFirstName
     case MissingLastName
     case MissingAddress
     case MissingCity
     case MissingState
     case MissingZipCode
+    case MissingProject
+    case MissingVender
+    case InvalidDOB
 }
 
 class PassBuilder {
@@ -32,236 +31,410 @@ class PassBuilder {
     func run() throws {
         if entry == false {
             enteredType = .reject
-            access["firstName"] = ""
-            access["lastName"] = ""
-            access["address"] = ""
-            access["city"] = ""
-            access["state"] = ""
-            access["zipCode"] = ""
-            access["enter"] = "FALSE"
-            access["Amusement Areas"] = "FALSE"
-            access["Kitchen Areas"] = "FALSE"
-            access["Maintenance Areas"] = "FALSe"
-            access["Office Areas"] = "FALSe"
-            access["discountFood"] = "0"
-            access["discountMerch"] = "0"
+            access[accessData.firstName.rawValue] = ""
+            access[accessData.lastName.rawValue] = ""
+            access[accessData.address.rawValue] = ""
+            access[accessData.city.rawValue] = ""
+            access[accessData.state.rawValue] = ""
+            access[accessData.zipCode.rawValue] = ""
+            access[accessData.project.rawValue] = ""
+            access[accessData.vender.rawValue] = ""
+            access[accessData.enter.rawValue] = accessBool.accessFalse.rawValue
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessFalse.rawValue
+            access[entrantPerms.kitchenAreas.rawValue] = accessBool.accessFalse.rawValue
+            access[entrantPerms.maintenanceAreas.rawValue] = accessBool.accessFalse.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessFalse.rawValue
+            access[entrantPerms.officeArea.rawValue] = accessBool.accessFalse.rawValue
+            access[accessData.discountFood.rawValue] = "0"
+            access[accessData.discountMerch.rawValue] = "0"
             throw passThrows.DoubleEntry
         }
         switch enteredType {
         // MARK: Child Guest
         case .childGuest:
-            guard let dobMonth = month else {
-                print("No DOB Month to submit")
-                return
+            guard let dobInput = dob else {
+                throw passThrows.InvalidDOB
             }
-            guard let dobDay = day else {
-                print("No DOB Day to submit")
-                return
+            
+            do {
+                try formatDates(datefunction: dobInput)
+            } catch {
+                throw passThrows.InvalidDOB
             }
-            guard let dobYear = year else {
-                print("No DOB Year to submit")
-                return
+            
+            if month == "" {
+                throw passThrows.InvalidDOB
+            }
+            if day == "" {
+                throw passThrows.InvalidDOB
+            }
+            if year == "" {
+                throw passThrows.InvalidDOB
             }
             
             // Check if you are allowed to enter and assign permission
-            access["dobMonth"] = dobMonth
-            access["dobDay"] = dobDay
-            access["dobYear"] = dobYear
+            access[accessData.dobMonth.rawValue] = month
+            access[accessData.dobDay.rawValue] = day
+            access[accessData.dobYear.rawValue] = year
             
             // Check to make sure the Guest is old enough
             checkBirthday(enteredType)
             
-            if (access["enter"] == "TRUE") {
-                access["Amusement Areas"] = "TRUE"
+            if (access[accessData.enter.rawValue] == accessBool.accessTrue.rawValue) {
+                access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+                access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
             } else {
                 throw passThrows.BlockedEntry
             }
-            print("Entry Allowed")
-            entry = false
-            setEntry()
+            
             throw passThrows.EntryWelcome
         case .classicGuest: // MARK: Classic Guest
-            access["enter"] = "TRUE"
-            access["Amusement Areas"] = "TRUE"
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
             print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             entry = false
             setEntry()
             throw passThrows.EntryWelcome
         case .vipGuest: // MARK: VIP Guest
-            access["enter"] = "TRUE"
-            access["Amusement Areas"] = "TRUE"
-            access["Skip Ride Lines"] = "TRUE"
-            access["discountFood"] = "10"
-            access["discountMerch"] = "20"
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.skipRideLines.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.discountFood.rawValue] = "10"
+            access[accessData.discountMerch.rawValue] = "20"
+            print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
+            entry = false
+            setEntry()
+            throw passThrows.EntryWelcome
+        case .senior:
+            if firstName == "" {
+                print("No First Name to submit")
+                throw passThrows.MissingFirstName
+            }
+            if lastName == "" {
+                print("No Last Name to submit")
+                throw passThrows.MissingLastName
+            }
+            if month == "" {
+                print("No DOB Month to submit")
+                throw passThrows.InvalidDOB
+            }
+            if day == "" {
+                print("No DOB Day to submit")
+                throw passThrows.InvalidDOB
+            }
+            if year == "" {
+                print("No DOB Year to submit")
+                throw passThrows.InvalidDOB
+            }
+            access[accessData.dobMonth.rawValue] = month
+            access[accessData.dobDay.rawValue] = day
+            access[accessData.dobYear.rawValue] = year
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.skipRideLines.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.discountFood.rawValue] = "10"
+            access[accessData.discountMerch.rawValue] = "10"
+            print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
+            entry = false
+            setEntry()
+            throw passThrows.EntryWelcome
+        case .seasonPass:
+            if firstName == "" {
+                print("No First Name to submit")
+                throw passThrows.MissingFirstName
+            }
+            if lastName == "" {
+                print("No Last Name to submit")
+                throw passThrows.MissingLastName
+            }
+            if address == "" {
+                print("No Address to submit")
+                throw passThrows.MissingAddress
+            }
+            if city == "" {
+                print("No City to submit")
+                throw passThrows.MissingCity
+            }
+            if state == "" {
+                print("No State to submit")
+                throw passThrows.MissingState
+            }
+            if zipCode == "" {
+                print("No Zip Code to submit")
+                throw passThrows.MissingZipCode
+            }
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[accessData.address.rawValue] = address
+            access[accessData.city.rawValue] = city
+            access[accessData.state.rawValue] = state
+            access[accessData.zipCode.rawValue] = zipCode
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.skipRideLines.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.discountFood.rawValue] = "10"
+            access[accessData.discountMerch.rawValue] = "20"
             print("Entry Allowed")
             entry = false
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeFoodServices: // MARK: Food Employee
-            guard let fname = firstName else {
+            if firstName == "" {
                 print("No First Name to submit")
                 throw passThrows.MissingFirstName
             }
-            guard let lname = lastName else {
+            if lastName == "" {
                 print("No Last Name to submit")
                 throw passThrows.MissingLastName
             }
-            guard let eaddress = address else {
+            if address == "" {
                 print("No Address to submit")
                 throw passThrows.MissingAddress
             }
-            guard let ecity = city else {
+            if city == "" {
                 print("No City to submit")
                 throw passThrows.MissingCity
             }
-            guard let estate = state else {
+            if state == "" {
                 print("No State to submit")
                 throw passThrows.MissingState
             }
-            guard let ezip = zipCode else {
+            if zipCode == "" {
                 print("No Zip Code to submit")
                 throw passThrows.MissingZipCode
             }
-            access["firstName"] = fname
-            access["lastName"] = lname
-            access["address"] = eaddress
-            access["city"] = ecity
-            access["state"] = estate
-            access["zipCode"] = "\(ezip)"
-            access["enter"] = "TRUE"
-            access["Amusement Areas"] = "TRUE"
-            access["Kitchen Areas"] = "TRUE"
-            access["discountFood"] = "15"
-            access["discountMerch"] = "25"
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[accessData.address.rawValue] = address
+            access[accessData.city.rawValue] = city
+            access[accessData.state.rawValue] = state
+            access[accessData.zipCode.rawValue] = zipCode
+            access[entrantPerms.maintenanceAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.kitchenAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.discountFood.rawValue] = "15"
+            access[accessData.discountMerch.rawValue] = "25"
             print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             entry = false
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeRideServices: // MARK: Ride Employee
-            guard let fname = firstName else {
+            if firstName == "" {
                 print("No First Name to submit")
                 throw passThrows.MissingFirstName
             }
-            guard let lname = lastName else {
+            if lastName == "" {
                 print("No Last Name to submit")
                 throw passThrows.MissingLastName
             }
-            guard let eaddress = address else {
+            if address == "" {
                 print("No Address to submit")
                 throw passThrows.MissingAddress
             }
-            guard let ecity = city else {
+            if city == "" {
                 print("No City to submit")
                 throw passThrows.MissingCity
             }
-            guard let estate = state else {
+            if state == "" {
                 print("No State to submit")
                 throw passThrows.MissingState
             }
-            guard let ezip = zipCode else {
+            if zipCode == "" {
                 print("No Zip Code to submit")
                 throw passThrows.MissingZipCode
             }
-            access["firstName"] = fname
-            access["lastName"] = lname
-            access["address"] = eaddress
-            access["city"] = ecity
-            access["state"] = estate
-            access["zipCode"] = "\(ezip)"
-            access["enter"] = "TRUE"
-            access["Ride Control Areas"] = "TRUE"
-            access["Amusement Areas"] = "TRUE"
-            access["discountFood"] = "15"
-            access["discountMerch"] = "25"
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[accessData.address.rawValue] = address
+            access[accessData.city.rawValue] = city
+            access[accessData.state.rawValue] = state
+            access[accessData.zipCode.rawValue] = zipCode
+            access[entrantPerms.rideControlAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.discountFood.rawValue] = "15"
+            access[accessData.discountMerch.rawValue] = "25"
             print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             entry = false
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeMaintenances: // MARK: Maintenance Employee
-            guard let fname = firstName else {
+            if firstName == "" {
                 print("No First Name to submit")
                 throw passThrows.MissingFirstName
             }
-            guard let lname = lastName else {
+            if lastName == "" {
                 print("No Last Name to submit")
                 throw passThrows.MissingLastName
             }
-            guard let eaddress = address else {
+            if address == "" {
                 print("No Address to submit")
                 throw passThrows.MissingAddress
             }
-            guard let ecity = city else {
+            if city == "" {
                 print("No City to submit")
                 throw passThrows.MissingCity
             }
-            guard let estate = state else {
+            if state == "" {
                 print("No State to submit")
                 throw passThrows.MissingState
             }
-            guard let ezip = zipCode else {
+            if zipCode == "" {
                 print("No Zip Code to submit")
                 throw passThrows.MissingZipCode
             }
-            access["firstName"] = fname
-            access["lastName"] = lname
-            access["address"] = eaddress
-            access["city"] = ecity
-            access["state"] = estate
-            access["zipCode"] = "\(ezip)"
-            access["enter"] = "TRUE"
-            access["Amusement Areas"] = "TRUE"
-            access["Kitchen Areas"] = "TRUE"
-            access["Maintenance Areas"] = "TRUE"
-            access["discountFood"] = "15"
-            access["discountMerch"] = "25"
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[accessData.address.rawValue] = address
+            access[accessData.city.rawValue] = city
+            access[accessData.state.rawValue] = state
+            access[accessData.zipCode.rawValue] = zipCode
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.kitchenAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.maintenanceAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.discountFood.rawValue] = "15"
+            access[accessData.discountMerch.rawValue] = "25"
             print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             entry = false
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeManagers: // MARK: Manager Employee
-            guard let fname = firstName else {
+            if firstName == "" {
                 print("No First Name to submit")
                 throw passThrows.MissingFirstName
             }
-            guard let lname = lastName else {
+            if lastName == "" {
                 print("No Last Name to submit")
                 throw passThrows.MissingLastName
             }
-            guard let eaddress = address else {
+            if address == "" {
                 print("No Address to submit")
                 throw passThrows.MissingAddress
             }
-            guard let ecity = city else {
+            if city == "" {
                 print("No City to submit")
                 throw passThrows.MissingCity
             }
-            guard let estate = state else {
+            if state == "" {
                 print("No State to submit")
                 throw passThrows.MissingState
             }
-            guard let ezip = zipCode else {
+            if zipCode == "" {
                 print("No Zip Code to submit")
                 throw passThrows.MissingZipCode
             }
-            access["firstName"] = fname
-            access["lastName"] = lname
-            access["address"] = eaddress
-            access["city"] = ecity
-            access["state"] = estate
-            access["zipCode"] = "\(ezip)"
-            access["enter"] = "TRUE"
-            access["Amusement Areas"] = "TRUE"
-            access["Kitchen Areas"] = "TRUE"
-            access["Maintenance Areas"] = "TRUE"
-            access["Office Areas"] = "TRUE"
-            access["discountFood"] = "25"
-            access["discountMerch"] = "25"
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[accessData.address.rawValue] = address
+            access[accessData.city.rawValue] = city
+            access[accessData.state.rawValue] = state
+            access[accessData.zipCode.rawValue] = zipCode
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.kitchenAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.maintenanceAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.officeArea.rawValue] = accessBool.accessTrue.rawValue
+            access[accessData.discountFood.rawValue] = "25"
+            access[accessData.discountMerch.rawValue] = "25"
             print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
+            entry = false
+            setEntry()
+            throw passThrows.EntryWelcome
+        case .contract:
+            if firstName == "" {
+                print("No First Name to submit")
+                throw passThrows.MissingFirstName
+            }
+            if lastName == "" {
+                print("No Last Name to submit")
+                throw passThrows.MissingLastName
+            }
+            if address == "" {
+                print("No Address to submit")
+                throw passThrows.MissingAddress
+            }
+            if city == "" {
+                print("No City to submit")
+                throw passThrows.MissingCity
+            }
+            if state == "" {
+                print("No State to submit")
+                throw passThrows.MissingState
+            }
+            if zipCode == "" {
+                print("No Zip Code to submit")
+                throw passThrows.MissingZipCode
+            }
+            if projectNumber == "" {
+                print("No Project ID to submit")
+                throw passThrows.MissingProject
+            }
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[accessData.address.rawValue] = address
+            access[accessData.city.rawValue] = city
+            access[accessData.state.rawValue] = state
+            access[accessData.zipCode.rawValue] = zipCode
+            access[accessData.project.rawValue] = projectNumber
+            print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
+            entry = false
+            setEntry()
+            throw passThrows.EntryWelcome
+        case .vender:
+            if firstName == "" {
+                print("No First Name to submit")
+                throw passThrows.MissingFirstName
+            }
+            if lastName == "" {
+                print("No Last Name to submit")
+                throw passThrows.MissingLastName
+            }
+            if address == "" {
+                print("No Address to submit")
+                throw passThrows.MissingAddress
+            }
+            if city == "" {
+                print("No City to submit")
+                throw passThrows.MissingCity
+            }
+            if state == "" {
+                print("No State to submit")
+                throw passThrows.MissingState
+            }
+            if zipCode == "" {
+                print("No Zip Code to submit")
+                throw passThrows.MissingZipCode
+            }
+            if vender == "" {
+                print("No Vender to submit")
+                throw passThrows.MissingVender
+            }
+            access[accessData.firstName.rawValue] = firstName
+            access[accessData.lastName.rawValue] = lastName
+            access[accessData.address.rawValue] = address
+            access[accessData.city.rawValue] = city
+            access[accessData.state.rawValue] = state
+            access[accessData.zipCode.rawValue] = zipCode
+            access[accessData.vender.rawValue] = vender
+            print("Entry Allowed")
+            access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             entry = false
             setEntry()
             throw passThrows.EntryWelcome
         case .reject: // MARK: Reject Guest
-            access["enter"] = "FALSE"
+            access[accessData.enter.rawValue] = accessBool.accessFalse.rawValue
             entry = false
             setEntry()
             throw passThrows.BlockedEntry
