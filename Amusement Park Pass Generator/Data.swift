@@ -31,8 +31,6 @@ var projectNumber: String?
 var age: Int = 0
 var entry: Bool = true
 var runGate: Int = 0
-var subMenuDisplay: Int = 0
-var stopCheck: Int = 0
 
 enum entrants: String {
     case reject = "Not Allowed"

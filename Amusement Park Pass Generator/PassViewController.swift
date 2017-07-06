@@ -84,6 +84,17 @@ class PassViewController: UIViewController {
         access["project"] = ""
         access["Birthday"] = accessBool.accessFalse.rawValue
         access["enter"] = accessBool.accessFalse.rawValue
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
+        nameText.text = ""
+        descriptionText.text = ""
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         

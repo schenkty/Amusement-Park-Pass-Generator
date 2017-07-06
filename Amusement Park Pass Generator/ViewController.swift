@@ -64,6 +64,16 @@ class ViewController: UIViewController {
         popButton.alpha = 0.4
         genButton.isEnabled = false
         genButton.alpha = 0.4
+        // Reset texts
+        dobText.text = ""
+        projectText.text = ""
+        firstText.text = ""
+        lastText.text = ""
+        companyText.text = ""
+        streetText.text = ""
+        cityText.text = ""
+        stateText.text = ""
+        zipText.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,6 +96,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func childSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .childGuest
         dobText.isEnabled = true
         dobText.alpha = 1.0
@@ -112,6 +131,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func adultSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .classicGuest
         dobText.isEnabled = false
         dobText.alpha = 0.2
@@ -131,13 +159,22 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = false
         zipText.alpha = 0.2
-        popButton.isEnabled = true
-        popButton.alpha = 1.0
+        popButton.isEnabled = false
+        popButton.alpha = 0.2
         genButton.isEnabled = true
         genButton.alpha = 1.0
     }
     
     @IBAction func seniorSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .senior
         dobText.isEnabled = true
         dobText.alpha = 1.0
@@ -164,6 +201,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func vipSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .vipGuest
         dobText.isEnabled = false
         dobText.alpha = 0.2
@@ -183,13 +229,22 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = false
         zipText.alpha = 0.2
-        popButton.isEnabled = true
-        popButton.alpha = 1.0
+        popButton.isEnabled = false
+        popButton.alpha = 0.2
         genButton.isEnabled = true
         genButton.alpha = 1.0
     }
     
     @IBAction func seasonSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .seasonPass
         dobText.isEnabled = false
         dobText.alpha = 0.2
@@ -229,6 +284,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func foodSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .employeeFoodServices
         dobText.isEnabled = false
         dobText.alpha = 0.2
@@ -255,6 +319,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rideSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .employeeRideServices
         dobText.isEnabled = false
         dobText.alpha = 0.2
@@ -281,6 +354,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func maintenanceSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .employeeMaintenances
         dobText.isEnabled = false
         dobText.alpha = 0.2
@@ -307,6 +389,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func managerSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         subMenuView.isHidden = true
         enteredType = .employeeManagers
         dobText.isEnabled = false
@@ -334,6 +425,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func venderSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         subMenuView.isHidden = true
         enteredType = .vender
         dobText.isEnabled = true
@@ -361,6 +461,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction func contractSelected(_ sender: UIButton) {
+        dob = ""
+        projectNumber = ""
+        firstName = ""
+        lastName = ""
+        vender = ""
+        address = ""
+        city = ""
+        state = ""
+        zipCode = ""
         enteredType = .contract
         dobText.isEnabled = false
         dobText.alpha = 0.2
