@@ -206,7 +206,7 @@
                                     <color key="titleColor" red="0.34638184309005737" green="0.58586674928665161" blue="0.5609738826751709" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="TestEntry:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Og-57-Old"/>
+                                    <action selector="popData:" destination="BYZ-38-t0r" eventType="touchDown" id="eHJ-85-mPf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMR-nw-yeN">
@@ -503,7 +503,7 @@
                         <outlet property="genButton" destination="jfC-92-aXN" id="V0T-d6-4VA"/>
                         <outlet property="lastText" destination="IKZ-JZ-xvg" id="kOw-4e-48d"/>
                         <outlet property="maintenanceEntry" destination="kP2-aj-d0f" id="Sl9-b3-nux"/>
-                        <outlet property="popButton" destination="De9-pN-kbp" id="0al-YL-CCx"/>
+                        <outlet property="popButton" destination="De9-pN-kbp" id="EBl-BY-btR"/>
                         <outlet property="projectText" destination="xbm-Zm-Rla" id="Pju-f4-xeU"/>
                         <outlet property="rideEntry" destination="tsy-Ln-hIe" id="4Ch-Q5-c1f"/>
                         <outlet property="seasonEntry" destination="AKU-nY-Sqe" id="Bmb-9A-FeU"/>
@@ -522,7 +522,7 @@
         <!--Pass View Controller-->
         <scene sceneID="Sxy-Kp-BoM">
             <objects>
-                <viewController storyboardIdentifier="passView" id="XEh-R0-2Ed" customClass="PassViewController" customModule="Amusement_Park_Pass_Generator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="passView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XEh-R0-2Ed" customClass="PassViewController" customModule="Amusement_Park_Pass_Generator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BYv-bq-f8Z"/>
                         <viewControllerLayoutGuide type="bottom" id="Wsd-og-F23"/>
@@ -537,10 +537,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FaceImageAsset" translatesAutoresizingMaskIntoConstraints="NO" id="G5K-uX-UbL">
                                 <rect key="frame" x="89" y="178" width="191" height="194"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTs-0M-MBM">
-                                <rect key="frame" x="300" y="166" width="296" height="64"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Smith" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTs-0M-MBM">
+                                <rect key="frame" x="329" y="166" width="241.5" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="296" id="gjs-Cr-Tuk"/>
                                     <constraint firstAttribute="height" constant="64" id="nxk-xA-YCG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="38"/>
@@ -708,9 +707,8 @@
                             <constraint firstAttribute="trailing" secondItem="HDj-fJ-2nn" secondAttribute="trailing" id="i10-Nq-vSg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IvB-vF-4CL" secondAttribute="trailing" constant="9" id="m6y-3i-UCI"/>
                             <constraint firstItem="Szn-0E-tgf" firstAttribute="leading" secondItem="G5K-uX-UbL" secondAttribute="trailing" constant="49" id="miO-ip-A1S"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="uTs-0M-MBM" secondAttribute="trailing" constant="152" id="nNX-9C-nwX"/>
                             <constraint firstItem="zTg-oL-9ox" firstAttribute="top" secondItem="fPT-M9-GSB" secondAttribute="bottom" constant="239" id="oOl-nt-QMJ"/>
-                            <constraint firstItem="uTs-0M-MBM" firstAttribute="leading" secondItem="G5K-uX-UbL" secondAttribute="trailing" constant="20" id="oqN-30-lbe"/>
+                            <constraint firstItem="uTs-0M-MBM" firstAttribute="leading" secondItem="G5K-uX-UbL" secondAttribute="trailing" constant="49" id="oqN-30-lbe"/>
                             <constraint firstItem="Szn-0E-tgf" firstAttribute="top" secondItem="BYv-bq-f8Z" secondAttribute="bottom" constant="199" id="pwy-Cd-hV2"/>
                             <constraint firstItem="Pby-9X-b45" firstAttribute="leading" secondItem="G5K-uX-UbL" secondAttribute="trailing" constant="49" id="u2t-KI-ZMH"/>
                             <constraint firstItem="Pby-9X-b45" firstAttribute="top" secondItem="Szn-0E-tgf" secondAttribute="bottom" constant="32" id="uKD-lA-MNr"/>

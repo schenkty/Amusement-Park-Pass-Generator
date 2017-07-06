@@ -13,14 +13,14 @@ enum passThrows: Error {
     case BlockedEntry
     case DoubleEntry
     case MissingAllData
-    case MissingFirstName
-    case MissingLastName
-    case MissingAddress
-    case MissingCity
-    case MissingState
-    case MissingZipCode
-    case MissingProject
-    case MissingVender
+    case InvalidFirstName
+    case InvalidLastName
+    case InvalidAddress
+    case InvalidCity
+    case InvalidState
+    case InvalidZipCode
+    case InvalidProject
+    case InvalidVender
     case InvalidDOB
 }
 
@@ -108,13 +108,13 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .senior:
-            if firstName == "" {
+            if firstName! == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName! == "" || (firstName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
             if month == "" {
                 print("No DOB Month to submit")
@@ -134,6 +134,7 @@ class PassBuilder {
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
             access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
             access[entrantPerms.skipRideLines.rawValue] = accessBool.accessTrue.rawValue
             access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             access[accessData.discountFood.rawValue] = "10"
@@ -144,29 +145,29 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .seasonPass:
-            if firstName == "" {
+            if firstName == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName! == "" || (firstName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
-            if address == "" {
+            if address == "" || (address?.characters.count)! < 5 {
                 print("No Address to submit")
-                throw passThrows.MissingAddress
+                throw passThrows.InvalidAddress
             }
-            if city == "" {
+            if city! == ""  || (city?.characters.count)! < 3 {
                 print("No City to submit")
-                throw passThrows.MissingCity
+                throw passThrows.InvalidCity
             }
-            if state == "" {
+            if state == "" || (state?.characters.count)! < 2 {
                 print("No State to submit")
-                throw passThrows.MissingState
+                throw passThrows.InvalidState
             }
-            if zipCode == "" {
+            if zipCode! == "" || (zipCode?.characters.count)! < 5 {
                 print("No Zip Code to submit")
-                throw passThrows.MissingZipCode
+                throw passThrows.InvalidZipCode
             }
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
@@ -175,6 +176,7 @@ class PassBuilder {
             access[accessData.state.rawValue] = state
             access[accessData.zipCode.rawValue] = zipCode
             access[entrantPerms.amusementAreas.rawValue] = accessBool.accessTrue.rawValue
+            access[entrantPerms.rideRides.rawValue] = accessBool.accessTrue.rawValue
             access[entrantPerms.skipRideLines.rawValue] = accessBool.accessTrue.rawValue
             access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             access[accessData.discountFood.rawValue] = "10"
@@ -184,29 +186,29 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeFoodServices: // MARK: Food Employee
-            if firstName == "" {
+            if firstName == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName! == "" || (lastName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
-            if address == "" {
+            if address == "" || (address?.characters.count)! < 5 {
                 print("No Address to submit")
-                throw passThrows.MissingAddress
+                throw passThrows.InvalidAddress
             }
-            if city == "" {
+            if city == "" || (city?.characters.count)! < 3 {
                 print("No City to submit")
-                throw passThrows.MissingCity
+                throw passThrows.InvalidCity
             }
-            if state == "" {
+            if state! == "" || (state?.characters.count)! < 2 {
                 print("No State to submit")
-                throw passThrows.MissingState
+                throw passThrows.InvalidState
             }
-            if zipCode == "" {
+            if zipCode == "" || (zipCode?.characters.count)! < 5 {
                 print("No Zip Code to submit")
-                throw passThrows.MissingZipCode
+                throw passThrows.InvalidZipCode
             }
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
@@ -225,29 +227,29 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeRideServices: // MARK: Ride Employee
-            if firstName == "" {
+            if firstName! == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName == "" || (lastName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
-            if address == "" {
+            if address! == "" || (address?.characters.count)! < 5 {
                 print("No Address to submit")
-                throw passThrows.MissingAddress
+                throw passThrows.InvalidAddress
             }
-            if city == "" {
+            if city! == "" || (city?.characters.count)! < 3 {
                 print("No City to submit")
-                throw passThrows.MissingCity
+                throw passThrows.InvalidCity
             }
-            if state == "" {
+            if state! == "" || (state?.characters.count)! < 2 {
                 print("No State to submit")
-                throw passThrows.MissingState
+                throw passThrows.InvalidState
             }
-            if zipCode == "" {
+            if zipCode! == "" || (zipCode?.characters.count)! < 5 {
                 print("No Zip Code to submit")
-                throw passThrows.MissingZipCode
+                throw passThrows.InvalidZipCode
             }
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
@@ -266,29 +268,30 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeMaintenances: // MARK: Maintenance Employee
-            if firstName == "" {
+            if firstName! == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName! == "" || (lastName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
-            if address == "" {
+            if address! == "" || (address?.characters.count)! < 5 {
                 print("No Address to submit")
-                throw passThrows.MissingAddress
+                throw passThrows.InvalidAddress
             }
-            if city == "" {
+            if city! == "" || (city?.characters.count)! < 3 {
                 print("No City to submit")
-                throw passThrows.MissingCity
+        
+                throw passThrows.InvalidCity
             }
-            if state == "" {
+            if state! == "" || (state?.characters.count)! < 2 {
                 print("No State to submit")
-                throw passThrows.MissingState
+                throw passThrows.InvalidState
             }
-            if zipCode == "" {
+            if zipCode! == "" || (zipCode?.characters.count)! < 5 {
                 print("No Zip Code to submit")
-                throw passThrows.MissingZipCode
+                throw passThrows.InvalidZipCode
             }
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
@@ -308,29 +311,29 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .employeeManagers: // MARK: Manager Employee
-            if firstName == "" {
+            if firstName! == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName! == "" || (lastName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
-            if address == "" {
+            if address! == "" || (address?.characters.count)! < 5 {
                 print("No Address to submit")
-                throw passThrows.MissingAddress
+                throw passThrows.InvalidAddress
             }
-            if city == "" {
+            if city! == "" || (city?.characters.count)! < 3 {
                 print("No City to submit")
-                throw passThrows.MissingCity
+                throw passThrows.InvalidCity
             }
-            if state == "" {
+            if state! == "" || (state?.characters.count)! < 2 {
                 print("No State to submit")
-                throw passThrows.MissingState
+                throw passThrows.InvalidState
             }
-            if zipCode == "" {
+            if zipCode! == "" || (zipCode?.characters.count)! < 5 {
                 print("No Zip Code to submit")
-                throw passThrows.MissingZipCode
+                throw passThrows.InvalidZipCode
             }
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
@@ -352,33 +355,34 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .contract:
-            if firstName == "" {
+            if firstName! == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName! == "" || (lastName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
-            if address == "" {
+            if address! == "" || (address?.characters.count)! < 5 {
                 print("No Address to submit")
-                throw passThrows.MissingAddress
+                throw passThrows.InvalidAddress
             }
-            if city == "" {
+            if city! == "" || (city?.characters.count)! < 3 {
                 print("No City to submit")
-                throw passThrows.MissingCity
+                
+                throw passThrows.InvalidCity
             }
-            if state == "" {
+            if state! == "" || (state?.characters.count)! < 2 {
                 print("No State to submit")
-                throw passThrows.MissingState
+                throw passThrows.InvalidState
             }
-            if zipCode == "" {
+            if zipCode! == "" || (zipCode?.characters.count)! < 5 {
                 print("No Zip Code to submit")
-                throw passThrows.MissingZipCode
+                throw passThrows.InvalidZipCode
             }
-            if projectNumber == "" {
+            if projectNumber == "" || (projectNumber?.characters.count)! < 4 {
                 print("No Project ID to submit")
-                throw passThrows.MissingProject
+                throw passThrows.InvalidProject
             }
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
@@ -393,41 +397,44 @@ class PassBuilder {
             setEntry()
             throw passThrows.EntryWelcome
         case .vender:
-            if firstName == "" {
+            guard let dobInput = dob else {
+                throw passThrows.InvalidDOB
+            }
+            
+            do {
+                try formatDates(datefunction: dobInput)
+            } catch {
+                throw passThrows.InvalidDOB
+            }
+            
+            if month == "" {
+                throw passThrows.InvalidDOB
+            }
+            if day == "" {
+                throw passThrows.InvalidDOB
+            }
+            if year == "" {
+                throw passThrows.InvalidDOB
+            }
+            if firstName == "" || (firstName?.characters.count)! < 2 {
                 print("No First Name to submit")
-                throw passThrows.MissingFirstName
+                throw passThrows.InvalidFirstName
             }
-            if lastName == "" {
+            if lastName == "" || (lastName?.characters.count)! < 2 {
                 print("No Last Name to submit")
-                throw passThrows.MissingLastName
+                throw passThrows.InvalidLastName
             }
-            if address == "" {
-                print("No Address to submit")
-                throw passThrows.MissingAddress
-            }
-            if city == "" {
-                print("No City to submit")
-                throw passThrows.MissingCity
-            }
-            if state == "" {
-                print("No State to submit")
-                throw passThrows.MissingState
-            }
-            if zipCode == "" {
-                print("No Zip Code to submit")
-                throw passThrows.MissingZipCode
-            }
-            if vender == "" {
+            if vender == "" || (vender?.characters.count)! < 2 {
                 print("No Vender to submit")
-                throw passThrows.MissingVender
+                throw passThrows.InvalidVender
             }
             access[accessData.firstName.rawValue] = firstName
             access[accessData.lastName.rawValue] = lastName
-            access[accessData.address.rawValue] = address
-            access[accessData.city.rawValue] = city
-            access[accessData.state.rawValue] = state
-            access[accessData.zipCode.rawValue] = zipCode
             access[accessData.vender.rawValue] = vender
+            access[accessData.dobMonth.rawValue] = month
+            access[accessData.dobDay.rawValue] = day
+            access[accessData.dobYear.rawValue] = year
+            
             print("Entry Allowed")
             access[accessData.enter.rawValue] = accessBool.accessTrue.rawValue
             entry = false

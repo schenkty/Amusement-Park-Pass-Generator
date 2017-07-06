@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var maintenanceEntry: UIButton!
     
     @IBOutlet weak var contractEntry: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -59,7 +60,10 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = false
         zipText.alpha = 0.2
-        
+        popButton.isEnabled = false
+        popButton.alpha = 0.4
+        genButton.isEnabled = false
+        genButton.alpha = 0.4
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,6 +105,10 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = false
         zipText.alpha = 0.2
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func adultSelected(_ sender: UIButton) {
@@ -123,6 +131,10 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = false
         zipText.alpha = 0.2
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func seniorSelected(_ sender: UIButton) {
@@ -145,6 +157,10 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = false
         zipText.alpha = 0.2
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func vipSelected(_ sender: UIButton) {
@@ -167,6 +183,10 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = false
         zipText.alpha = 0.2
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func seasonSelected(_ sender: UIButton) {
@@ -189,6 +209,10 @@ class ViewController: UIViewController {
         stateText.alpha = 1.0
         zipText.isEnabled = true
         zipText.alpha = 1.0
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func employeeSelected(_ sender: UIButton) {
@@ -224,6 +248,10 @@ class ViewController: UIViewController {
         stateText.alpha = 1.0
         zipText.isEnabled = true
         zipText.alpha = 1.0
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func rideSelected(_ sender: UIButton) {
@@ -246,6 +274,10 @@ class ViewController: UIViewController {
         stateText.alpha = 1.0
         zipText.isEnabled = true
         zipText.alpha = 1.0
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func maintenanceSelected(_ sender: UIButton) {
@@ -268,6 +300,10 @@ class ViewController: UIViewController {
         stateText.alpha = 1.0
         zipText.isEnabled = true
         zipText.alpha = 1.0
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func managerSelected(_ sender: UIButton) {
@@ -278,24 +314,38 @@ class ViewController: UIViewController {
         projectText.isEnabled = false
         projectText.alpha = 0.2
         firstText.isEnabled = true
+        firstText.alpha = 1.0
         lastText.isEnabled = true
+        lastText.alpha = 1.0
         companyText.isEnabled = false
         companyText.alpha = 0.2
         streetText.isEnabled = true
+        streetText.alpha = 1.0
         cityText.isEnabled = true
+        cityText.alpha = 1.0
         stateText.isEnabled = true
+        stateText.alpha = 1.0
         zipText.isEnabled = true
+        zipText.alpha = 1.0
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     @IBAction func venderSelected(_ sender: UIButton) {
         subMenuView.isHidden = true
         enteredType = .vender
         dobText.isEnabled = true
+        dobText.alpha = 1.0
         projectText.isEnabled = false
         projectText.alpha = 0.2
         firstText.isEnabled = true
+        firstText.alpha = 1.0
         lastText.isEnabled = true
+        lastText.alpha = 1.0
         companyText.isEnabled = true
+        companyText.alpha = 1.0
         streetText.isEnabled = false
         streetText.alpha = 0.2
         cityText.isEnabled = true
@@ -304,6 +354,10 @@ class ViewController: UIViewController {
         stateText.alpha = 0.2
         zipText.isEnabled = true
         zipText.alpha = 0.2
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
 
     @IBAction func contractSelected(_ sender: UIButton) {
@@ -311,14 +365,25 @@ class ViewController: UIViewController {
         dobText.isEnabled = false
         dobText.alpha = 0.2
         projectText.isEnabled = true
+        projectText.alpha = 1.0
         firstText.isEnabled = true
+        firstText.alpha = 1.0
         lastText.isEnabled = true
+        lastText.alpha = 1.0
         companyText.isEnabled = false
         companyText.alpha = 0.2
         streetText.isEnabled = true
+        streetText.alpha = 1.0
         cityText.isEnabled = true
+        cityText.alpha = 1.0
         stateText.isEnabled = true
+        stateText.alpha = 1.0
         zipText.isEnabled = true
+        zipText.alpha = 1.0
+        popButton.isEnabled = true
+        popButton.alpha = 1.0
+        genButton.isEnabled = true
+        genButton.alpha = 1.0
     }
     
     // Function to add alerts for invalid data
@@ -422,23 +487,23 @@ class ViewController: UIViewController {
         
         do {
             try PassBuilder.init(type: enteredType).run()
-        } catch passThrows.MissingFirstName {
-            showAlert(title: "Missing First Name!")
+        } catch passThrows.InvalidFirstName {
+            showAlert(title: "Invalid First Name!")
             playSound(path: Bundle.main.path(forResource: "AccessDenied", ofType: "wav")!)
-        } catch passThrows.MissingLastName {
-            showAlert(title: "Missing Last Name!")
+        } catch passThrows.InvalidLastName {
+            showAlert(title: "Invalid Last Name!")
             playSound(path: Bundle.main.path(forResource: "AccessDenied", ofType: "wav")!)
-        } catch passThrows.MissingAddress {
-            showAlert(title: "Missing Address!")
+        } catch passThrows.InvalidAddress {
+            showAlert(title: "Invalid Address!")
             playSound(path: Bundle.main.path(forResource: "AccessDenied", ofType: "wav")!)
-        } catch passThrows.MissingCity {
-            showAlert(title: "Missing City!")
+        } catch passThrows.InvalidCity {
+            showAlert(title: "Invalid City!")
             playSound(path: Bundle.main.path(forResource: "AccessDenied", ofType: "wav")!)
-        } catch passThrows.MissingState {
-            showAlert(title: "Missing State!")
+        } catch passThrows.InvalidState {
+            showAlert(title: "Invalid State!")
             playSound(path: Bundle.main.path(forResource: "AccessDenied", ofType: "wav")!)
-        } catch passThrows.MissingZipCode {
-            showAlert(title: "Missing Zip Code!")
+        } catch passThrows.InvalidZipCode {
+            showAlert(title: "Invalid Zip Code!")
             playSound(path: Bundle.main.path(forResource: "AccessDenied", ofType: "wav")!)
         } catch passThrows.InvalidDOB {
             showAlert(title: "Invalid DOB!")
@@ -450,18 +515,80 @@ class ViewController: UIViewController {
             showAlert(title: "Double Entry! Please Wait.")
             playSound(path: Bundle.main.path(forResource: "AccessDenied", ofType: "wav")!)
         } catch passThrows.EntryWelcome {
-            showAlert(title: "Welcome!")
+            //showAlert(title: "Welcome!")
             playSound(path: Bundle.main.path(forResource: "AccessGranted", ofType: "wav")!)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "passView")//storyBoard.instantiateViewControllerWithIdentifier("passView") as PassViewController
+            self.present(nextViewController, animated:true, completion:nil)
         } catch {
             showAlert(title: "Missing Data!")
         }
-        if access[accessData.enter.rawValue] == accessBool.accessTrue.rawValue {
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "passView") as? ViewController {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
-            }
-        } else {
-            showAlert(title: "Blocked Entry!")
+    }
+    
+    @IBAction func popData(_ sender: UIButton) {
+        switch enteredType {
+        case .childGuest:
+            dobText.text = "01/01/2000"
+        case .classicGuest:
+            print("Adult Type does not require any data")
+        case .vipGuest:
+            print("VIP Type does not require any data")
+        case .senior:
+            dobText.text = "01/01/1960"
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+        case .seasonPass:
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+            streetText.text = "1 Infinite Loop"
+            cityText.text = "Cupertino"
+            stateText.text = "CA"
+            zipText.text = "95014"
+        case .employeeFoodServices:
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+            streetText.text = "1 Infinite Loop"
+            cityText.text = "Cupertino"
+            stateText.text = "CA"
+            zipText.text = "95014"
+        case .employeeRideServices:
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+            streetText.text = "1 Infinite Loop"
+            cityText.text = "Cupertino"
+            stateText.text = "CA"
+            zipText.text = "95014"
+        case .employeeMaintenances:
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+            streetText.text = "1 Infinite Loop"
+            cityText.text = "Cupertino"
+            stateText.text = "CA"
+            zipText.text = "95014"
+        case .contract:
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+            streetText.text = "1 Infinite Loop"
+            cityText.text = "Cupertino"
+            stateText.text = "CA"
+            zipText.text = "95014"
+            projectText.text = "1001"
+        case .employeeManagers:
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+            streetText.text = "1 Infinite Loop"
+            cityText.text = "Cupertino"
+            stateText.text = "CA"
+            zipText.text = "95014"
+        case .vender:
+            firstText.text = "Johnny"
+            lastText.text = "Appleseed"
+            companyText.text = "Orkin"
+            dobText.text = "01/01/1980"
+        default:
+            print("Why am I here?")
         }
     }
+    
 }
