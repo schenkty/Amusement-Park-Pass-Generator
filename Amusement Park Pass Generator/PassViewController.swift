@@ -22,16 +22,10 @@ class PassViewController: UIViewController {
     @IBOutlet weak var result4: UILabel!
     @IBOutlet weak var result5: UILabel!
     
-    
+    // Setup Stack Views to display the current data correctly
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        /*
-        checkPermission(.amusementAreas)
-        checkPermission(.kitchenAreas)
-        checkPermission(.maintenanceAreas)
-        checkPermission(.rideControlAreas)
-        checkPermission(.skipRideLines)*/
         
         if checkPermission(.amusementAreas) == true {
             perms1.text = "- Unlimited Rides"
@@ -56,6 +50,7 @@ class PassViewController: UIViewController {
     }
     
     @IBAction func newPassButton(_ sender: UIButton) {
+        // Reset Vars and move back to pass building screen
         access["discountFood"] = "0"
         access["discountMerch"] = "0"
         access["Skip Ride Lines"] = accessBool.accessFalse.rawValue
@@ -87,6 +82,7 @@ class PassViewController: UIViewController {
     }
     
     @IBAction func area(_ sender: UIButton) {
+        // Check if user had permission here and display
         if checkPermission(.amusementAreas) == true {
             result1.text = entrantPerms.amusementAreas.rawValue
         } else {
@@ -115,6 +111,7 @@ class PassViewController: UIViewController {
     }
     
     @IBAction func discount(_ sender: UIButton) {
+        // Check if user had permission here and display
         result3.isHidden = true
         result4.isHidden = true
         result5.isHidden = true
@@ -131,6 +128,7 @@ class PassViewController: UIViewController {
     }
     
     @IBAction func ride(_ sender: UIButton) {
+        // Check if user had permission here and display
         result3.isHidden = true
         result4.isHidden = true
         result5.isHidden = true
@@ -145,10 +143,4 @@ class PassViewController: UIViewController {
             result2.isHidden = true
         }
     }
-    
-    
-    
-    
-    
-    
 }

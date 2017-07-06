@@ -40,6 +40,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         subMenuView.isHidden = true
+        enteredType = .reject
+        dobText.isEnabled = false
+        dobText.alpha = 0.2
+        projectText.isEnabled = false
+        projectText.alpha = 0.2
+        firstText.isEnabled = false
+        firstText.alpha = 0.2
+        lastText.isEnabled = false
+        lastText.alpha = 0.2
+        companyText.isEnabled = false
+        companyText.alpha = 0.2
+        streetText.isEnabled = false
+        streetText.alpha = 0.2
+        cityText.isEnabled = false
+        cityText.alpha = 0.2
+        stateText.isEnabled = false
+        stateText.alpha = 0.2
+        zipText.isEnabled = false
+        zipText.alpha = 0.2
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +67,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Hide / Show or disable UI Items based on which entry type is slected
     @IBAction func guestSelected(_ sender: UIButton) {
         subMenuView.isHidden = false
         childEntry.isHidden = false
@@ -63,48 +84,111 @@ class ViewController: UIViewController {
     @IBAction func childSelected(_ sender: UIButton) {
         enteredType = .childGuest
         dobText.isEnabled = true
+        dobText.alpha = 1.0
         projectText.isEnabled = false
+        projectText.alpha = 0.2
         firstText.isEnabled = false
+        firstText.alpha = 0.2
         lastText.isEnabled = false
+        lastText.alpha = 0.2
         companyText.isEnabled = false
+        companyText.alpha = 0.2
         streetText.isEnabled = false
+        streetText.alpha = 0.2
         cityText.isEnabled = false
+        cityText.alpha = 0.2
         stateText.isEnabled = false
+        stateText.alpha = 0.2
         zipText.isEnabled = false
+        zipText.alpha = 0.2
     }
     
     @IBAction func adultSelected(_ sender: UIButton) {
         enteredType = .classicGuest
         dobText.isEnabled = false
+        dobText.alpha = 0.2
         projectText.isEnabled = false
+        projectText.alpha = 0.2
         firstText.isEnabled = false
+        firstText.alpha = 0.2
         lastText.isEnabled = false
+        lastText.alpha = 0.2
         companyText.isEnabled = false
+        companyText.alpha = 0.2
         streetText.isEnabled = false
+        streetText.alpha = 0.2
         cityText.isEnabled = false
+        cityText.alpha = 0.2
         stateText.isEnabled = false
+        stateText.alpha = 0.2
         zipText.isEnabled = false
+        zipText.alpha = 0.2
     }
     
     @IBAction func seniorSelected(_ sender: UIButton) {
         enteredType = .senior
+        dobText.isEnabled = true
+        dobText.alpha = 1.0
+        firstText.isEnabled = true
+        firstText.alpha = 1.0
+        lastText.isEnabled = true
+        lastText.alpha = 1.0
+        projectText.isEnabled = false
+        projectText.alpha = 0.2
+        companyText.isEnabled = false
+        companyText.alpha = 0.2
+        streetText.isEnabled = false
+        streetText.alpha = 0.2
+        cityText.isEnabled = false
+        cityText.alpha = 0.2
+        stateText.isEnabled = false
+        stateText.alpha = 0.2
+        zipText.isEnabled = false
+        zipText.alpha = 0.2
     }
     
     @IBAction func vipSelected(_ sender: UIButton) {
         enteredType = .vipGuest
         dobText.isEnabled = false
+        dobText.alpha = 0.2
         projectText.isEnabled = false
+        projectText.alpha = 0.2
         firstText.isEnabled = false
+        firstText.alpha = 0.2
         lastText.isEnabled = false
+        lastText.alpha = 0.2
         companyText.isEnabled = false
+        companyText.alpha = 0.2
         streetText.isEnabled = false
+        streetText.alpha = 0.2
         cityText.isEnabled = false
+        cityText.alpha = 0.2
         stateText.isEnabled = false
+        stateText.alpha = 0.2
         zipText.isEnabled = false
+        zipText.alpha = 0.2
     }
     
     @IBAction func seasonSelected(_ sender: UIButton) {
         enteredType = .seasonPass
+        dobText.isEnabled = false
+        dobText.alpha = 0.2
+        projectText.isEnabled = false
+        projectText.alpha = 0.2
+        firstText.isEnabled = true
+        firstText.alpha = 1.0
+        lastText.isEnabled = true
+        lastText.alpha = 1.0
+        companyText.isEnabled = false
+        companyText.alpha = 0.2
+        streetText.isEnabled = true
+        streetText.alpha = 1.0
+        cityText.isEnabled = true
+        cityText.alpha = 1.0
+        stateText.isEnabled = true
+        stateText.alpha = 1.0
+        zipText.isEnabled = true
+        zipText.alpha = 1.0
     }
     
     @IBAction func employeeSelected(_ sender: UIButton) {
@@ -123,49 +207,80 @@ class ViewController: UIViewController {
     @IBAction func foodSelected(_ sender: UIButton) {
         enteredType = .employeeFoodServices
         dobText.isEnabled = false
+        dobText.alpha = 0.2
         projectText.isEnabled = false
+        projectText.alpha = 0.2
         firstText.isEnabled = true
+        firstText.alpha = 1.0
         lastText.isEnabled = true
+        lastText.alpha = 1.0
         companyText.isEnabled = false
+        companyText.alpha = 0.2
         streetText.isEnabled = true
+        streetText.alpha = 1.0
         cityText.isEnabled = true
+        cityText.alpha = 1.0
         stateText.isEnabled = true
+        stateText.alpha = 1.0
         zipText.isEnabled = true
+        zipText.alpha = 1.0
     }
     
     @IBAction func rideSelected(_ sender: UIButton) {
         enteredType = .employeeRideServices
         dobText.isEnabled = false
+        dobText.alpha = 0.2
         projectText.isEnabled = false
+        projectText.alpha = 0.2
         firstText.isEnabled = true
+        firstText.alpha = 1.0
         lastText.isEnabled = true
+        lastText.alpha = 1.0
         companyText.isEnabled = false
+        companyText.alpha = 0.2
         streetText.isEnabled = true
+        stateText.alpha = 1.0
         cityText.isEnabled = true
+        cityText.alpha = 1.0
         stateText.isEnabled = true
+        stateText.alpha = 1.0
         zipText.isEnabled = true
+        zipText.alpha = 1.0
     }
+    
     @IBAction func maintenanceSelected(_ sender: UIButton) {
         enteredType = .employeeMaintenances
         dobText.isEnabled = false
+        dobText.alpha = 0.2
         projectText.isEnabled = false
+        projectText.alpha = 0.2
         firstText.isEnabled = true
+        firstText.alpha = 1.0
         lastText.isEnabled = true
+        lastText.alpha = 1.0
         companyText.isEnabled = false
+        companyText.alpha = 0.2
         streetText.isEnabled = true
+        streetText.alpha = 1.0
         cityText.isEnabled = true
+        cityText.alpha = 1.0
         stateText.isEnabled = true
+        stateText.alpha = 1.0
         zipText.isEnabled = true
+        zipText.alpha = 1.0
     }
     
     @IBAction func managerSelected(_ sender: UIButton) {
         subMenuView.isHidden = true
         enteredType = .employeeManagers
         dobText.isEnabled = false
+        dobText.alpha = 0.2
         projectText.isEnabled = false
+        projectText.alpha = 0.2
         firstText.isEnabled = true
         lastText.isEnabled = true
         companyText.isEnabled = false
+        companyText.alpha = 0.2
         streetText.isEnabled = true
         cityText.isEnabled = true
         stateText.isEnabled = true
@@ -175,13 +290,38 @@ class ViewController: UIViewController {
     @IBAction func venderSelected(_ sender: UIButton) {
         subMenuView.isHidden = true
         enteredType = .vender
-        
+        dobText.isEnabled = true
+        projectText.isEnabled = false
+        projectText.alpha = 0.2
+        firstText.isEnabled = true
+        lastText.isEnabled = true
+        companyText.isEnabled = true
+        streetText.isEnabled = false
+        streetText.alpha = 0.2
+        cityText.isEnabled = true
+        cityText.alpha = 0.2
+        stateText.isEnabled = true
+        stateText.alpha = 0.2
+        zipText.isEnabled = true
+        zipText.alpha = 0.2
     }
 
     @IBAction func contractSelected(_ sender: UIButton) {
         enteredType = .contract
+        dobText.isEnabled = false
+        dobText.alpha = 0.2
+        projectText.isEnabled = true
+        firstText.isEnabled = true
+        lastText.isEnabled = true
+        companyText.isEnabled = false
+        companyText.alpha = 0.2
+        streetText.isEnabled = true
+        cityText.isEnabled = true
+        stateText.isEnabled = true
+        zipText.isEnabled = true
     }
     
+    // Function to add alerts for invalid data
     func showAlert(title: String, message: String? = nil, style: UIAlertControllerStyle = .alert) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         
@@ -193,6 +333,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func genPass(_ sender: UIButton) {
+        // Update Vars based on which entry type the pass is being created for
         switch enteredType {
         case .childGuest:
             print("Starting PassBuilder")
